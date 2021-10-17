@@ -4,10 +4,23 @@
     path: /usr/local/bin/aws
   register: aws_link
 
+- name: Stat aws config directory
+  ansible.builtin.stat:
+    path: ~/.aws
+  register: aws_config
+
 - name: Set installed
   set_fact:
-    installed: "{{ true if aws_link.stat.islnk is defined and aws_link.stat.islnk else false }}"
+    installed: '{{ true if aws_link.stat.islnk is defined and aws_link.stat.islnk else false }}'
+
+- name: Set has_aws_config
+  set_fact:
+    has_aws_config: '{{ true if aws_link.stat.exists else false }}'
 
 - include: install.yml
   when:
     - not installed
+
+- include: configure.yml
+  when:
+    - not has_aws_config

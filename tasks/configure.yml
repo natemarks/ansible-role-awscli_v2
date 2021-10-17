@@ -1,0 +1,19 @@
+- name: Create aws client config directory
+  file:
+    path: ~/.aws
+    state: directory
+    mode: 0755
+
+- name: Manage aws config
+  ansible.builtin.template:
+    src: templates/aws_config.j2
+    dest: '~/.aws/config'
+    mode: '0600'
+    backup: true
+
+- name: manage aws credentials
+  ansible.builtin.template:
+    src: templates/aws_credentials.j2
+    dest: '~/.aws/credentials'
+    mode: '0600'
+    backup: true

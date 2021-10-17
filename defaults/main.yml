@@ -1,2 +1,4 @@
 ---
 # defaults file for ansible-role-awscli-v2
+aws_access_key_id: 'AAAABBBBCCCCC'
+aws_secret_access_key: 'AAAABBBBCCCCC'

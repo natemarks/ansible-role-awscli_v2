@@ -1,0 +1,21 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Stat the aws binary
+    stat: path=/usr/local/bin/aws
+    register: aws_symlink
+
+  - name: Set installed based on existence of AWSCLI symlink
+    set_fact:
+      installed: '{{ true if aws_symlink.stat.islnk is defined and
+      aws_symlink.stat.islnk else false }}'
+
+  - name: Example assertion
+    assert:
+      that:
+      - aws_symlink.stat.islnk is defined
+      - aws_symlink.stat.islnk
