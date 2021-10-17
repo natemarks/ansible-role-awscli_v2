@@ -1,0 +1,13 @@
+---
+- name: Stat aws executable link
+  ansible.builtin.stat:
+    path: /usr/local/bin/aws
+  register: aws_link
+
+- name: Set installed
+  set_fact:
+    installed: "{{ true if aws_link.stat.islnk is defined and aws_link.stat.islnk else false }}"
+
+- include: install.yml
+  when:
+    - not installed

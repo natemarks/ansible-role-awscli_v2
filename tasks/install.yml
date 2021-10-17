@@ -1,0 +1,20 @@
+---
+- name: Install unzip
+  package:
+    name: unzip
+    state: present
+
+- name: Download and extract installer
+  unarchive:
+    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Run the installer.
+  command:
+  args:
+    cmd: /tmp/aws/install
+    creates: /usr/local/bin/aws
+  become: true
+  register: cmd_install
+  changed_when: cmd_install.rc == 0
