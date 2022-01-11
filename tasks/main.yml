@@ -17,10 +17,10 @@
   set_fact:
     has_aws_config: '{{ true if aws_link.stat.exists else false }}'
 
-- include: install.yml
+- import_tasks: install.yml
   when:
     - not installed
 
-- include: configure.yml
+- import_tasks: configure.yml
   when:
     - not has_aws_config
