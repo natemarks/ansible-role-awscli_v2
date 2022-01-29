@@ -1,0 +1,5 @@
+---
+- name: Run awscli_v2
+  hosts: localhost
+  roles:
+    - natemarks.awscli_v2
