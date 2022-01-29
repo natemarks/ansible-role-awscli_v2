@@ -15,5 +15,5 @@ https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-
 git clone https://github.com/natemarks/ansible-role-awscli_v2.git
 cd ansible-role-awscli_v2
 sudo apt install -y curl 
-bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.25/scripts/run_playbook.sh" | bash -s --  -p  playbook' 
+bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.31/scripts/run_playbook.sh" | bash -s --  -p  playbook' 
 ```
